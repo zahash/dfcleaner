@@ -195,7 +195,7 @@ class TestDataCleaner(unittest.TestCase):
             self.df_suggest_conversion)
         self.assertEqual(suggested_conversion_dict, {'b': float, 'c': float})
 
-    def test_suggest_col_drop(self):
+    def test_spot_irrelevant_columns(self):
         cols_to_drop = spot_irrelevant_columns(self.sample_col_names)
 
         self.assertListEqual(
@@ -217,5 +217,5 @@ class TestDataCleaner(unittest.TestCase):
             ]
         )
 
-        # if __name__ == "__main__":
-        #     unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
