@@ -345,3 +345,30 @@ def spot_irrelevant_columns(cols):
             cols_to_drop.append(col)
 
     return cols_to_drop
+
+
+def too_many_missing(df, frac=0.6):
+    '''
+    This function will check the count of null values
+    in each column of the given dataframe and returns
+    a list of columns where there are too many null
+    values (as determined by the frac argument)
+
+    Returns:
+        a list of column names with too many null values
+
+    Args:
+        df: pandas.DataFrame
+        frac: percentage of accepted number of non-null values
+            Eg: frac=0.6 means the number of non-null values 
+            in a column should be more than 60%
+    '''
+    too_many_missing_cols = []
+
+    num_rows = df.shape[0]
+    for col_name in df.columns:
+        num_notnull = df[col_name].notnull().sum()
+        if num_notnull/num_rows < frac:
+            too_many_missing_cols.append(col_name)
+
+    return too_many_missing_cols
