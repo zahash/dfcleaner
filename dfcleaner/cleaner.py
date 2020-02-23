@@ -361,7 +361,7 @@ def too_many_missing(df, frac=0.6):
         df: pandas.DataFrame
         frac: percentage of accepted number of non-null values
             Eg: frac=0.6 means the number of non-null values 
-            in a column should be more than 60%
+            in a column should be greater than or equal to 60%
     '''
     too_many_missing_cols = []
 

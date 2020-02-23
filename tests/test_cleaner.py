@@ -4,7 +4,7 @@
 import unittest
 import pandas as pd
 import numpy as np
-from dfcleaner.cleaner import sanitize, change_dtypes, remove_outliers, fill_nan, preprocess, suggest_conversion_dict, spot_irrelevant_columns
+from dfcleaner.cleaner import sanitize, change_dtypes, remove_outliers, fill_nan, preprocess, suggest_conversion_dict, spot_irrelevant_columns, too_many_missing
 
 
 class TestDataCleaner(unittest.TestCase):
@@ -93,6 +93,14 @@ class TestDataCleaner(unittest.TestCase):
             'a': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             'b': ['1', np.nan, '3', '4', '5', 6, '7', '8', 9, '10', '11'],
             'c': ['?', '2', 3, 4, 5, 6, 7, 8, 9, 10, 11],
+        })
+
+        self.df_too_many_missing = pd.DataFrame({
+            'a': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+            'b': [np.nan, np.nan, 3, 4, 5, 6, 7, np.nan, 9, 10],
+            'c': [np.nan, 2, np.nan, 4, np.nan, 6, np.nan, 8, 9, 10],
+            'd': [np.nan, 2, np.nan, 4, np.nan, 6, np.nan, 8, np.nan, np.nan],
+            'e': [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan],
         })
 
     def test_sanitize(self):
@@ -214,6 +222,17 @@ class TestDataCleaner(unittest.TestCase):
                 'ID',
                 'customer_id',
                 'customer id',
+            ]
+        )
+
+    def test_too_many_missing(self):
+        too_many_missing_cols = too_many_missing(self.df_too_many_missing)
+
+        self.assertListEqual(
+            too_many_missing_cols,
+            [
+                'd',
+                'e',
             ]
         )
 
