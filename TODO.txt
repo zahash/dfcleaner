@@ -1,3 +1,6 @@
+initialize the required test variables inside their respective
+methods and not in a huge lump inside the setUp() method.
+
 rearrange the arguments in all functions
 
 drop column if too many missing values
