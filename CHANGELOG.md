@@ -1,5 +1,20 @@
 # Changelog
 
+## Unreleased
+
+## Changed
+
+- forgot to rename test_suggest_col_drop() to test_spot_irrelevant_columns()
+
+## Added
+
+- add function too_many_missing() to get the col names having too many missing values (as determined by the frac argument)
+- add tests for the function too_many_missing(); Also made very minor doc string changes to the function
+
+## Fixed
+
+- fixed a bug in suggest_conversion_dict() function; If the col dtype is string, then the function will first check if can be converted to category and then it will check if can be converted to float in an 'if elif' statement
+
 ## 1.1.1
 
 ### Added
