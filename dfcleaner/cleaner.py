@@ -298,12 +298,21 @@ def suggest_conversion_dict(df):
 
     suggested_conversion_dict = {}
     for col in df.columns:
+        # if the column is numeric then check if it
+        # can be converted to category
         if df[col].dtype in [int, float]:
             if _can_convert_to_category(df[col]):
                 suggested_conversion_dict[col] = 'category'
 
+        # if the column is string then check first if
+        # it can be converted to category(less than 1-5 % of unique
+        # values)
+        # then check if it can be converted to float
         else:
-            if _can_convert_to_float(df[col]):
+            if _can_convert_to_category(df[col]):
+                suggested_conversion_dict[col] = 'category'
+
+            elif _can_convert_to_float(df[col]):
                 suggested_conversion_dict[col] = float
 
     return suggested_conversion_dict
