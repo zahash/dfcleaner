@@ -1,3 +1,9 @@
+make a new function suggest_col_drop() that combines
+too_many_missing() and spot_irrelevant_columns() and
+returns a list of column names that are suggested to drop.
+It may also return another variable 'meta' that states
+the reason why each column was selected
+
 initialize the required test variables inside their respective
 methods and not in a huge lump inside the setUp() method.
 
