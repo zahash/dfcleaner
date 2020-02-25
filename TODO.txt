@@ -1,3 +1,7 @@
+maybe join the fill_nan_values log table with change_dtype table
+
+maybe make a function to create categorical bins from numerical data
+
 make a new function suggest_col_drop() that combines
 too_many_missing() and spot_irrelevant_columns() and
 returns a list of column names that are suggested to drop.
