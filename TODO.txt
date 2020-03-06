@@ -1,3 +1,9 @@
+if string column has missing value, fill it with the string "unknown"
+
+
+if numeric column has binary values then don't change its dtype to category (don't want pd.get_dummies to pick that column)
+
+
 maybe join the fill_nan_values log table with change_dtype table
 
 maybe make a function to create categorical bins from numerical data
