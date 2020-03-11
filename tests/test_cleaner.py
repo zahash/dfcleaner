@@ -93,6 +93,8 @@ class TestDataCleaner(unittest.TestCase):
             'a': [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
             'b': ['1', np.nan, '3', '4', '5', 6, '7', '8', 9, '10', '11'],
             'c': ['?', '2', 3, 4, 5, 6, 7, 8, 9, 10, 11],
+            'd': [1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1],
+            'e': [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
         })
 
         self.df_too_many_missing = pd.DataFrame({
@@ -201,7 +203,10 @@ class TestDataCleaner(unittest.TestCase):
     def test_suggest_conversion_dict(self):
         suggested_conversion_dict = suggest_conversion_dict(
             self.df_suggest_conversion)
-        self.assertEqual(suggested_conversion_dict, {'b': float, 'c': float})
+        self.assertEqual(suggested_conversion_dict, {
+            'b': float,
+            'c': float,
+        })
 
     def test_spot_irrelevant_columns(self):
         cols_to_drop = spot_irrelevant_columns(self.sample_col_names)

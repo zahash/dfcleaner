@@ -301,6 +301,11 @@ def suggest_conversion_dict(df):
         # if the column is numeric then check if it
         # can be converted to category
         if df[col].dtype in [int, float]:
+            # if numeric column has binary values then don't
+            # change its dtype to category (don't want
+            # pd.get_dummies to pick that column)
+            if len(df[col].unique()) <= 2:
+                continue
             if _can_convert_to_category(df[col]):
                 suggested_conversion_dict[col] = 'category'
 
